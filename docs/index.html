@@ -114,12 +114,10 @@
                             let writerAge = parseInt(this.ageFilter);
                             return writerAge >= minAge && writerAge <= maxAge;
                         })
-
                         .filter(usuario => {
-                            if (!usuario.obra.trim() !== "") {
+                            if (usuario.obra.trim() == "") {
                                 return true;
                             }
-
                             return usuario.obra.toLowerCase().includes(this.genreFilter.toLowerCase());
                         })
                 },
