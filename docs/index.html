@@ -112,7 +112,7 @@
                             let minAge = parseInt(usuario.id_min) || 0;
                             let maxAge = parseInt(usuario.id_max) || 150;
                             let writerAge = parseInt(this.ageFilter);
-                            return writerAge > minAge && writerAge < maxAge;
+                            return writerAge >= minAge && writerAge <= maxAge;
                         })
 
                         .filter(usuario => {
