@@ -1,0 +1,45 @@
+body {
+    padding: 2em;
+    background-color: rgb(199, 219, 226);
+}
+
+.page-title {
+    text-align: center;
+}
+
+/* #main-table {
+
+} */
+
+#main-table th {
+    color: navy;
+}
+
+#main-table td {
+    padding: 5px;
+    padding-bottom: 10px;
+}
+
+/* for the title */
+#main-table td:nth-child(1),
+#main-table td:nth-child(10),
+#main-table td:nth-child(12) {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: rgb(118, 187, 189);
+}
+
+.sr-only {
+    font-size: 75%;
+    color: gray;
+}
+
+ul {
+    list-style-type: none;
+}

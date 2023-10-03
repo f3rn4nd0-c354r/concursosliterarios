@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js Table with BootstrapVue and Filtering</title>
+
+    <!-- Include BootstrapVue CSS and JavaScript -->
+    <!-- <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-vue@2.21.2/dist/bootstrap-vue.css"> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-vue@2.23.0/dist/bootstrap-vue.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div id="app" class="container mt-5">
+        <h1 class="page-title">Concursos Literários em Português</h1>
+
+        <div id="table-filter">
+            <p>Filtrar por </p>
+            <ul>
+                <li>
+                    <p> idade. Tenho <input v-model="ageFilter" type="text" class="form-control mb-3"> anos.</p>
+                </li>
+                <li>
+                    <p> género. Escrevo <input v-model="genreFilter" type="text" class="form-control mb-3"
+                            placeholder="conto/poesia/romance">.</p>
+                </li>
+            </ul>
+        </div>
+
+        <b-table id="main-table" striped hover :items="filteredUsuarios" :fields="tableFields" :sort-by="'prazo'"
+            label-sort-asc="Ordenar 🡅" label-sort-desc="Ordenar 🡇" label-sort-clear="desordenar"
+            class="table-striped">
+            <template #cell(website)="data">
+                <b-link :href="data.item.website" target="_blank">ver website</b-link>
+            </template>
+            <template #cell(regulamento)="data">
+                <b-link :href="data.item.regulamento" target="_blank">ver regulamento</b-link>
+            </template>
+            <template #cell(prazo)="data">
+                {{data.item.prazo}} (faltam {{data.item.missing}} dias)
+            </template>
+
+
+        </b-table>
+
+        <h3>Se conhece algum concurso que não aparece na lista, indique-nos <a href="https://forms.gle/8CUyHjLePvtXu1T58" target="_blank">aqui</a>.</h3>
+    </div>
+
+
+    <!-- Include the BootstrapVue app -->
+    <script src="data.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    usuarios: usuarios,
+                    ageFilter: '',
+                    genreFilter: '',
+                    tableFields: [
+                        { key: 'titulo', label: 'Título', sortable: true },
+                        { key: 'concorrente', label: 'Concorrente' },
+                        { key: 'id_min', label: 'Idade mínima', sortable: true },
+                        { key: 'id_max', label: 'Idade máxima', sortable: true },
+                        { key: 'obra', label: 'Requisitos da obra' },
+                        { key: 'multiplas', label: 'Múltiplas participações' },
+                        { key: 'dimensao', label: 'Dimensão', sortable: true, sortKey: "dim_max" },
+                        { key: 'premio', label: 'Prémio', sortable: true, sortKey: "1premio" },
+                        { key: 'entrega', label: 'Forma de entrega' },
+                        { key: 'prazo', label: 'Prazo', sortable: true },
+                        { key: 'obs', label: 'Obs.' },
+                        { key: 'resultado', label: 'Resultado', sortable: true },
+                        { key: 'website', label: 'Website' },
+                        { key: 'regulamento', label: 'Regulamento' },
+                    ],
+                };
+            },
+            computed: {
+                filteredUsuarios: function () {
+
+                    usuarios.map(
+                        item => {
+                            // calculate missing days
+                            const pad = (n, s = 2) => (`${new Array(s).fill(0)}${n}`).slice(-s);
+                            let d = new Date(item.prazo);
+                            d.setHours(0, 0, 0, 0);
+                            let dNow = new Date();
+                            dNow.setHours(0, 0, 0, 0);
+                            const diffTime = Math.abs(d - dNow);
+                            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                            item.missing = diffDays;
+                            // fomat prazo date
+                            item.prazo = `${pad(d.getFullYear(), 4)}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+
+                            d = new Date(item.resultado);
+                            if (!isNaN(d)) {
+                                item.resultado = `${pad(d.getFullYear(), 4)}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+                            }
+                        }
+                    )
+
+                    return this.usuarios
+                        .filter(usuario => {
+                            if (!this.ageFilter) {
+                                return true;
+                            }
+                            let minAge = parseInt(usuario.id_min) || 0;
+                            let maxAge = parseInt(usuario.id_max) || 150;
+                            let writerAge = parseInt(this.ageFilter);
+                            return writerAge > minAge && writerAge < maxAge;
+                        })
+
+                        .filter(usuario => {
+                            if (!usuario.obra.trim() !== "") {
+                                return true;
+                            }
+
+                            return usuario.obra.toLowerCase().includes(this.genreFilter.toLowerCase());
+                        })
+                },
+            }
+        });
+    </script>
+</body>
+
+</html>
