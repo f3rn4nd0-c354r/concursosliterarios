@@ -7,9 +7,15 @@ body {
     text-align: center;
 }
 
-/* #main-table {
+#table-filter {
+    width: 50%;
+    float: left;
+}
 
-} */
+#contribute-data {
+    float: right;
+
+}
 
 #main-table th {
     color: navy;

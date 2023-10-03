@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-PT">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concursos Literários em Português</title>
 
-    <!-- Include BootstrapVue CSS and JavaScript -->
-    <!-- <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-vue@2.21.2/dist/bootstrap-vue.css"> -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-vue@2.23.0/dist/bootstrap-vue.js"></script>
 
@@ -16,21 +14,32 @@
 
 <body>
 
-    <div id="app" class="container mt-5">
+    <div id="app">
         <h1 class="page-title">Concursos Literários em Português</h1>
+        <b-container id="top">
+            <b-row>
+                <b-col id="table-filter">
+                    <!-- Content for the first div (takes up half of the screen on medium and larger screens) -->
+                    Filtrar por
+                    <ul>
+                        <li>
+                            <p> idade. Tenho <input v-model="ageFilter" type="text" class="form-contro"> anos.
+                            </p>
+                        </li>
+                        <li>
+                            <p> género. Escrevo <input v-model="genreFilter" type="text" class="form-control"
+                                    placeholder="conto/poesia/romance">.</p>
+                        </li>
+                    </ul>
+                </b-col>
+                <b-col id="contribute-data">
+                    <!-- Content for the second div (takes up half of the screen on medium and larger screens) -->
+                    <p>Se conhece algum concurso que não aparece na lista, indique-nos <a
+                            href="https://forms.gle/8CUyHjLePvtXu1T58" target="_blank">aqui</a>.</p>
 
-        <div id="table-filter">
-            <p>Filtrar por </p>
-            <ul>
-                <li>
-                    <p> idade. Tenho <input v-model="ageFilter" type="text" class="form-control mb-3"> anos.</p>
-                </li>
-                <li>
-                    <p> género. Escrevo <input v-model="genreFilter" type="text" class="form-control mb-3"
-                            placeholder="conto/poesia/romance">.</p>
-                </li>
-            </ul>
-        </div>
+                </b-col>
+            </b-row>
+        </b-container>
 
         <b-table id="main-table" striped hover :items="filteredUsuarios" :fields="tableFields" :sort-by="'prazo'"
             label-sort-asc="Ordenar 🡅" label-sort-desc="Ordenar 🡇" label-sort-clear="desordenar"
@@ -44,11 +53,7 @@
             <template #cell(prazo)="data">
                 {{data.item.prazo}} (faltam {{data.item.missing}} dias)
             </template>
-
-
         </b-table>
-
-        <h3>Se conhece algum concurso que não aparece na lista, indique-nos <a href="https://forms.gle/8CUyHjLePvtXu1T58" target="_blank">aqui</a>.</h3>
     </div>
 
 
