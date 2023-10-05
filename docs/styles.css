@@ -27,9 +27,7 @@ body {
 }
 
 /* for the title */
-#main-table td:nth-child(1),
-#main-table td:nth-child(10),
-#main-table td:nth-child(12) {
+td.no-splitting {
     white-space: nowrap;
     overflow: hidden;
 }
