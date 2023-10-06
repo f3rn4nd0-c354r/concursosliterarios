@@ -1,6 +1,6 @@
 var usuarios = [
   {
-    "titulo": "Prémio Imprensa Nacional/Ferreira de Castro",
+    "titulo": "Prémio \nImprensa Nacional/Ferreira de Castro",
     "concorrente": "portugueses e lusodescendentes residentes no estrangeiro",
     "id_min": "",
     "id_max": "",
@@ -21,7 +21,7 @@ var usuarios = [
     "": ""
   },
   {
-    "titulo": "Prémio de Literatura Juvenil Ferreira de Castro",
+    "titulo": "Prémio de Literatura Juvenil \nFerreira de Castro",
     "concorrente": "jovens portugueses e jovens oriundos de países de língua oficial portuguesa",
     "id_min": 12,
     "id_max": 15,
@@ -42,7 +42,7 @@ var usuarios = [
     "": ""
   },
   {
-    "titulo": "Prémio de Literatura Juvenil Ferreira de Castro",
+    "titulo": "Prémio de Literatura Juvenil \nFerreira de Castro",
     "concorrente": "jovens portugueses e jovens oriundos de países de língua oficial portuguesa",
     "id_min": 16,
     "id_max": 25,
@@ -63,7 +63,7 @@ var usuarios = [
     "": ""
   },
   {
-    "titulo": "Prémio Res Publica",
+    "titulo": "Prémio \nRes Publica",
     "concorrente": "autoria individual ou coletiva",
     "id_min": "",
     "id_max": "",
@@ -84,7 +84,7 @@ var usuarios = [
     "": ""
   },
   {
-    "titulo": "Prémio Literário Santos Stockler",
+    "titulo": "Prémio Literário \nSantos Stockler",
     "concorrente": "",
     "id_min": "",
     "id_max": "",
@@ -105,7 +105,7 @@ var usuarios = [
     "": ""
   },
   {
-    "titulo": "Prémio Literário Maria da Nóbrega",
+    "titulo": "Prémio Literário \nMaria da Nóbrega",
     "concorrente": "autores de nacionalidade portuguesa e autores estrangeiros a residir em Portugal",
     "id_min": "",
     "id_max": "",
@@ -117,7 +117,7 @@ var usuarios = [
     "dim_max": 3000,
     "dimensao": "6 a 10 pág",
     "1premio": 500,
-    "premio": "1º 500,00€; 2º 300,00€; 3º 200,00€; publicação",
+    "premio": "1º 500€; 2º 300€; 3º 200€; publicação",
     "entrega": "papel",
     "prazo": "2023-12-31T00:00:00.000Z",
     "obs": "",
@@ -126,7 +126,7 @@ var usuarios = [
     "": ""
   },
   {
-    "titulo": "Prémio Literário do Município de Mafra",
+    "titulo": "Prémio Literário do \nMunicípio de Mafra",
     "concorrente": "",
     "id_min": "",
     "id_max": "",
@@ -147,7 +147,7 @@ var usuarios = [
     "": ""
   },
   {
-    "titulo": "Prémio de Investigação Camilo Castelo Branco",
+    "titulo": "Prémio de Investigação \nCamilo Castelo Branco",
     "concorrente": "",
     "id_min": 18,
     "id_max": "",
@@ -168,7 +168,7 @@ var usuarios = [
     "": ""
   },
   {
-    "titulo": "Concurso Literário Sophia de Mello Breyner Andresen",
+    "titulo": "Concurso Literário \nSophia de Mello Breyner Andresen",
     "concorrente": "estudantes do 2º e 3º Ciclos do Ensino Básico e do Ensino Secundário da região do Algarve",
     "id_min": "",
     "id_max": "",
@@ -189,7 +189,7 @@ var usuarios = [
     "": "https://www.culturaportugal.gov.pt/pt/criar/apoios/diversos-2023/concurso-literario-sophia-de-mello-breyner-andresen/"
   },
   {
-    "titulo": "Prémio A-Má",
+    "titulo": "Prémio \nA-Má",
     "concorrente": "pessoas singulares",
     "id_min": "",
     "id_max": "",

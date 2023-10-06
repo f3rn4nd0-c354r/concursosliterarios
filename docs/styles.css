@@ -47,3 +47,13 @@ td.no-splitting {
 ul {
     list-style-type: none;
 }
+
+
+.locked-column {
+    font-weight: bold; /* Make text bold */
+    width: 150px; /* Set a fixed width for column locking */
+    position: sticky;
+    left: 0;
+    background-color: white;
+    z-index: 2;
+  }

@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Concursos Literários em Português</title>
+    <title>✒ Concursos Literários em Português</title>
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-vue@2.23.0/dist/bootstrap-vue.js"></script>
@@ -15,7 +18,7 @@
 <body>
 
     <div id="app">
-        <h1 class="page-title">Concursos Literários em Português</h1>
+        <h1 class="page-title">Concursos Literários em Português ✒</h1>
         <b-container id="top">
             <b-row>
                 <b-col id="table-filter">
@@ -44,6 +47,9 @@
         <b-table id="main-table" striped hover :items="filteredUsuarios" :fields="tableFields"
             :sort-by="currentSortColumn" label-sort-asc="Ordenar 🡅" label-sort-desc="Ordenar 🡇"
             label-sort-clear="desordenar" no-sort-reset class="table-striped" :sort-compare="sortingChanged" foot-clone>
+            <template #cell(titulo)="data">
+                <span v-html="data.item.titulo"></span>
+              </template>
             <template #cell(website)="data">
                 <b-link :href="data.item.website" target="_blank">ver website</b-link>
             </template>
@@ -72,7 +78,7 @@
                     genreFilter: '',
                     currentSortColumn: "prazo",
                     tableFields: [
-                        { key: 'titulo', label: 'Título', sortable: true, tdClass: 'no-splitting' },
+                        { key: 'titulo', label: 'Título', sortable: true, tdClass: 'no-splitting pre-wrap locked-column' },
                         { key: 'concorrente', label: 'Concorrente' },
                         { key: 'idade', label: 'Idade', tdClass: 'no-splitting' },
                         { key: 'obra', label: 'Requisitos da obra' },
@@ -134,6 +140,9 @@
                             for (column in ['id_max', "1premio"]) {
                                 item.column = parseInt(item.column);
                             }
+
+                            // 
+                            item.titulo = item.titulo.replace('\n', '<br>');
 
                         }
                     )
