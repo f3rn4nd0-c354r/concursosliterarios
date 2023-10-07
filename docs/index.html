@@ -124,7 +124,7 @@
                             d.setHours(0, 0, 0, 0);
                             let dNow = new Date();
                             dNow.setHours(0, 0, 0, 0);
-                            const diffTime = Math.abs(d - dNow);
+                            const diffTime = d - dNow;
                             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
                             item.tempoRestante = diffDays;
@@ -149,14 +149,29 @@
 
                     return this.usuarios
                         .filter(usuario => {
+                            // filter out contests that ended
+                            let dToday = new Date();
+                            dToday.setHours(0, 0, 0, 0);
+
+                            if (new Date(usuario.prazo) < dToday) {
+                                return false;
+                            }
+                            return true;
+                        })
+
+                        // age filter
+                        .filter(usuario => {
                             if (!this.ageFilter) {
                                 return true;
                             }
+                            
                             let minAge = parseInt(usuario.id_min) || 0;
                             let maxAge = parseInt(usuario.id_max) || 150;
                             let writerAge = parseInt(this.ageFilter);
                             return writerAge >= minAge && writerAge <= maxAge;
                         })
+
+                        // genre filter
                         .filter(usuario => {
                             if (usuario.obra.trim() == "") {
                                 return true;
