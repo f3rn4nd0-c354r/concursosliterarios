@@ -12,6 +12,29 @@ body {
     float: left;
 }
 
+#table-filter div,
+#table-filter p {
+    display: flex;
+}
+
+
+#table-filter p.writing-options {
+    margin-left: 7em;
+}
+
+
+#result-counter {
+    margin-top: 100px;
+    font-weight: bold;
+}
+
+#separator {
+    margin-top: 100px;
+    padding-top: 150px;
+}
+
+
+
 #contribute-data {
     float: right;
 
@@ -42,6 +65,8 @@ td.no-splitting {
 .sr-only {
     font-size: 75%;
     color: gray;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 ul {

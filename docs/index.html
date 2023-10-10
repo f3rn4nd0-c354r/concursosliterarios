@@ -9,7 +9,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-vue@2.23.0/dist/bootstrap-vue.js"></script>
 
     <link rel="stylesheet" href="styles.css">
@@ -26,12 +26,30 @@
                     Filtrar por
                     <ul>
                         <li>
-                            <p> idade. Tenho <input v-model="ageFilter" type="text" class="form-contro"> anos.
+                            <p> idade: tenho &nbsp;<input v-model="ageFilter" type="text" class="form-contro">&nbsp;
+                                anos.
                             </p>
                         </li>
                         <li>
-                            <p> género. Escrevo <input v-model="genreFilter" type="text" class="form-control"
-                                    placeholder="conto/poesia/romance">.</p>
+                            <p> formato: escrevo &nbsp; </p>
+                            
+                                <p class="writing-options">
+                                    <b-form-radio-group id="writing-format" v-model="formatFilter"
+                                        name="format-filter-selector" inline>
+                                        <b-form-radio value="tudo" inline>tudo</b-form-radio>
+                                        <b-form-radio value="prosa" inline>prosa</b-form-radio>
+                                        <b-form-radio value="poesia" inline>poesia</b-form-radio>
+                                    </b-form-radio-group>
+                                </p>
+                                <p class="writing-options"  >
+                                    <b-form-radio-group id="writing-genre" v-model="genreFilter"
+                                        name="genre-filter-selector" inline>
+                                        <b-form-radio value="tudo" inline>tudo</b-form-radio>
+                                        <b-form-radio value="ficcao" inline>ficção</b-form-radio>
+                                        <b-form-radio value="naoficcao" inline>não ficção</b-form-radio>
+                                    </b-form-radio-group>
+                                </p>
+                            
                         </li>
                     </ul>
                 </b-col>
@@ -39,22 +57,26 @@
                     <!-- Content for the second div (takes up half of the screen on medium and larger screens) -->
                     <p>Se conhece algum concurso que não aparece na lista, indique-nos <a
                             href="https://forms.gle/8CUyHjLePvtXu1T58" target="_blank">aqui</a>.</p>
-
+                    <p></p>
+                    <p></p>
+                    <p id="result-counter">{{ filteredUsuarios.length }} resultados</p>
                 </b-col>
             </b-row>
         </b-container>
+
+        <div id="separator">    </div>
 
         <b-table id="main-table" striped hover :items="filteredUsuarios" :fields="tableFields"
             :sort-by="currentSortColumn" label-sort-asc="Ordenar 🡅" label-sort-desc="Ordenar 🡇"
             label-sort-clear="desordenar" no-sort-reset class="table-striped" :sort-compare="sortingChanged" foot-clone>
             <template #cell(titulo)="data">
                 <span v-html="data.item.titulo"></span>
-              </template>
+            </template>
             <template #cell(website)="data">
                 <b-link :href="data.item.website" target="_blank">ver website</b-link>
             </template>
             <template #cell(regulamento)="data">
-                <b-link :href="data.item.regulamento" target="_blank">ver regulamento</b-link>
+                <b-link v-if="data.item.regulamento" :href="data.item.regulamento" target="_blank">ver regulamento</b-link>
             </template>
             <template #cell(prazo)="data">
                 {{data.item.prazo}}
@@ -75,13 +97,17 @@
                 return {
                     usuarios: usuarios,
                     ageFilter: '',
-                    genreFilter: '',
+                    formatFilter: 'tudo',
+                    genreFilter: 'tudo',
                     currentSortColumn: "prazo",
+                    resultsConter: 0,
                     tableFields: [
                         { key: 'titulo', label: 'Título', sortable: true, tdClass: 'no-splitting pre-wrap locked-column' },
                         { key: 'concorrente', label: 'Concorrente' },
                         { key: 'idade', label: 'Idade', tdClass: 'no-splitting' },
                         { key: 'obra', label: 'Requisitos da obra' },
+                        { key: 'formato', label: 'Formato' },
+                        { key: 'genero', label: 'Género' },
                         { key: 'tema', label: 'Tema' },
                         { key: 'multiplas', label: 'Múltiplas participações' },
                         { key: 'dimensao', label: 'Dimensão' },
@@ -98,7 +124,7 @@
             methods: {
                 sortingChanged(a, b, key) {
                     let newKey = key;
-                    switch(key) {
+                    switch (key) {
                         case 'premio':
                             newKey = '1premio';
                             break;
@@ -164,19 +190,34 @@
                             if (!this.ageFilter) {
                                 return true;
                             }
-                            
+
                             let minAge = parseInt(usuario.id_min) || 0;
                             let maxAge = parseInt(usuario.id_max) || 150;
                             let writerAge = parseInt(this.ageFilter);
                             return writerAge >= minAge && writerAge <= maxAge;
                         })
 
+                        // format filter
+                        .filter(usuario => {
+                            results = usuarios;
+                            if (this.formatFilter != "tudo") {
+                                results = usuario.formato.toLowerCase().includes(this.formatFilter.toLowerCase());
+                            }
+                            return results;
+                        })
+
                         // genre filter
                         .filter(usuario => {
-                            if (usuario.obra.trim() == "") {
-                                return true;
+                            results = usuarios;
+                            let genres = usuario.genero.toLowerCase().split(',');
+                            genres = genres.map((x) => x.trim());
+                            if (this.genreFilter === "ficcao") {
+                                results = (genres.indexOf('ficção') > -1)
                             }
-                            return usuario.obra.toLowerCase().includes(this.genreFilter.toLowerCase());
+                            else if (this.genreFilter === "naoficcao") {
+                                results = (genres.indexOf('não ficção') > -1)
+                            }
+                            return results;
                         })
                 },
             }
