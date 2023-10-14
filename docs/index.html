@@ -9,86 +9,96 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.7/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-vue@2.23.0/dist/bootstrap-vue.js"></script>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
     <div id="app">
-        <h1 class="page-title">Concursos Literários em Português ✒</h1>
-        <b-container id="top">
-            <b-row>
-                <b-col id="table-filter">
-                    <!-- Content for the first div (takes up half of the screen on medium and larger screens) -->
-                    Filtrar por
-                    <ul>
-                        <li>
-                            <p> idade: tenho &nbsp;<input v-model="ageFilter" type="text" class="form-contro">&nbsp;
-                                anos.
-                            </p>
-                        </li>
-                        <li>
-                            <p> formato: escrevo &nbsp; </p>
-                            
-                                <p class="writing-options">
+        <template>
+            <h1 class="page-title">Concursos Literários em Português ✒</h1>
+            <b-container fluid>
+                <b-row no-gutters>
+                    <b-col id="filters" >
+                        <b-row no-gutters>
+                            <b-col cols="2">
+                                Filtrar por
+                            </b-col>
+                            <b-col></b-col>
+                            <b-col></b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col cols="2"></b-col>
+                            <b-col cols="3">
+                                idade: tenho &nbsp;
+                            </b-col>
+                            <b-col>
+                                <input v-model="ageFilter" type="text" class="form-contro">&nbsp; anos.
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col cols="2"></b-col>
+                            <b-col cols="3">
+                                formato: escrevo &nbsp;
+                            </b-col>
+                            <b-col>
+                                <b-container class="filter-options">
                                     <b-form-radio-group id="writing-format" v-model="formatFilter"
                                         name="format-filter-selector" inline>
                                         <b-form-radio value="tudo" inline>tudo</b-form-radio>
                                         <b-form-radio value="prosa" inline>prosa</b-form-radio>
                                         <b-form-radio value="poesia" inline>poesia</b-form-radio>
                                     </b-form-radio-group>
-                                </p>
-                                <p class="writing-options"  >
                                     <b-form-radio-group id="writing-genre" v-model="genreFilter"
                                         name="genre-filter-selector" inline>
                                         <b-form-radio value="tudo" inline>tudo</b-form-radio>
                                         <b-form-radio value="ficcao" inline>ficção</b-form-radio>
                                         <b-form-radio value="naoficcao" inline>não ficção</b-form-radio>
                                     </b-form-radio-group>
-                                </p>
-                            
-                        </li>
-                    </ul>
-                </b-col>
-                <b-col id="contribute-data">
-                    <!-- Content for the second div (takes up half of the screen on medium and larger screens) -->
-                    <p>Se conhece algum concurso que não aparece na lista, indique-nos <a
-                            href="https://forms.gle/8CUyHjLePvtXu1T58" target="_blank">aqui</a>.</p>
-                    <p></p>
-                    <p></p>
-                    <p id="result-counter">{{ filteredUsuarios.length }} resultados</p>
-                </b-col>
-            </b-row>
-        </b-container>
+                                </b-container>
+                            </b-col>
+                        </b-row>
+                    </b-col>
+                    <b-col>
+                        <span id="contribute">Se conhece algum concurso que não aparece na lista, indique-nos <a
+                            href="https://forms.gle/8CUyHjLePvtXu1T58" target="_blank">aqui</a>.</span>
+                        <br>
+                        <span id="result-counter">{{ filteredUsuarios.length }} resultados</span>
+                    </b-col>
+                </b-row>
+            </b-container>
 
-        <div id="separator">    </div>
+            <div id="separator"> </div>
 
-        <b-table id="main-table" striped hover :items="filteredUsuarios" :fields="tableFields"
-            :sort-by="currentSortColumn" label-sort-asc="Ordenar 🡅" label-sort-desc="Ordenar 🡇"
-            label-sort-clear="desordenar" no-sort-reset class="table-striped" :sort-compare="sortingChanged" foot-clone>
-            <template #cell(titulo)="data">
-                <span v-html="data.item.titulo"></span>
-            </template>
-            <template #cell(website)="data">
-                <b-link :href="data.item.website" target="_blank">ver website</b-link>
-            </template>
-            <template #cell(regulamento)="data">
-                <b-link v-if="data.item.regulamento" :href="data.item.regulamento" target="_blank">ver regulamento</b-link>
-            </template>
-            <template #cell(prazo)="data">
-                {{data.item.prazo}}
-            </template>
-            <template #cell(tempoRestante)="data">
-                {{data.item.tempoRestante}} dias
-            </template>
-        </b-table>
+            <b-table id="main-table" :items="filteredUsuarios" :fields="tableFields"
+                :sort-by="currentSortColumn" label-sort-asc="Ordenar 🡅" label-sort-desc="Ordenar 🡇"
+                label-sort-clear="desordenar" no-sort-reset :sort-compare="sortingChanged"
+                foot-clone striped borderless hover head-variant="light">
+                <template #cell(titulo)="data">
+                    <span v-html="data.item.titulo"></span>
+                </template>
+                <template #cell(website)="data">
+                    <b-link :href="data.item.website" target="_blank">ver website</b-link>
+                </template>
+                <template #cell(regulamento)="data">
+                    <b-link v-if="data.item.regulamento" :href="data.item.regulamento" target="_blank">ver
+                        regulamento</b-link>
+                </template>
+                <template #cell(prazo)="data">
+                    {{data.item.prazo}}
+                </template>
+                <template #cell(tempoRestante)="data">
+                    {{data.item.tempoRestante}} dias
+                </template>
+            </b-table>
+        </template>
     </div>
 
 
     <!-- Include the BootstrapVue app -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-vue@2.23.0/dist/bootstrap-vue.js"></script>
     <script src="data.js"></script>
     <script>
         new Vue({

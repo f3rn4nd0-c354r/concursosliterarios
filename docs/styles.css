@@ -5,43 +5,55 @@ body {
 
 .page-title {
     text-align: center;
-}
-
-#table-filter {
-    width: 50%;
-    float: left;
-}
-
-#table-filter div,
-#table-filter p {
-    display: flex;
+    margin: 50px;
 }
 
 
-#table-filter p.writing-options {
-    margin-left: 7em;
+/* Filter section */
+
+#filters {
+    border: solid 2px white;
+    border-radius: 10px;
+    padding: 1em;
+    background-color: #e9ecef;
+
 }
 
+
+/* Right top side (contribute, results counter) */
+
+#contribute {
+    float: right;
+}
 
 #result-counter {
     margin-top: 100px;
     font-weight: bold;
+    float: right;
+    padding-right: 100px;
 }
+
+
+
+
+/*
+    Page sperator (top from results)
+*/
 
 #separator {
-    margin-top: 100px;
-    padding-top: 150px;
+    margin-top: 50px;
 }
 
 
 
-#contribute-data {
-    float: right;
 
+#main-table {
+    border-radius: 10px;
 }
 
 #main-table th {
     color: navy;
+    text-align: center;
 }
 
 #main-table td {
@@ -57,28 +69,25 @@ td.no-splitting {
 
 
 
-.table-striped>tbody>tr:nth-child(odd)>td,
+/* .table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
     background-color: rgb(118, 187, 189);
-}
+} */
 
-.sr-only {
+/* .sr-only {
     font-size: 75%;
     color: gray;
     white-space: nowrap;
     overflow: hidden;
-}
+} */
 
-ul {
+/* ul {
     list-style-type: none;
-}
+} */
 
 
 .locked-column {
-    font-weight: bold; /* Make text bold */
-    width: 150px; /* Set a fixed width for column locking */
-    position: sticky;
-    left: 0;
-    background-color: white;
-    z-index: 2;
-  }
+    /* Make text bold */
+    font-weight: bold;
+    color:navy
+}
