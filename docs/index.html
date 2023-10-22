@@ -1,15 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-PT">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>✒ Concursos Literários em Português</title>
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+    
+    <!-- Load required Bootstrap and BootstrapVue CSS -->
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap@4.5.2/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+
+    <!-- Load polyfills to support older browsers -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver" crossorigin="anonymous"></script>
+
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="https://unpkg.com/vue@2.7/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@2.23.0/dist/bootstrap-vue.min.js"></script>
+
+    <!-- Load the following for BootstrapVueIcons support -->
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
+
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -23,7 +38,7 @@
                     <b-col id="filters" >
                         <b-row no-gutters>
                             <b-col cols="2">
-                                Filtrar por
+                                Filtros:
                             </b-col>
                             <b-col></b-col>
                             <b-col></b-col>
@@ -31,7 +46,7 @@
                         <b-row>
                             <b-col cols="2"></b-col>
                             <b-col cols="3">
-                                idade: tenho &nbsp;
+                                (idade) Tenho &nbsp;
                             </b-col>
                             <b-col>
                                 <input v-model="ageFilter" type="text" class="form-contro">&nbsp; anos.
@@ -40,7 +55,7 @@
                         <b-row>
                             <b-col cols="2"></b-col>
                             <b-col cols="3">
-                                formato: escrevo &nbsp;
+                                Escrevo &nbsp;
                             </b-col>
                             <b-col>
                                 <b-container class="filter-options">
@@ -72,18 +87,17 @@
             <div id="separator"> </div>
 
             <b-table id="main-table" :items="filteredUsuarios" :fields="tableFields"
-                :sort-by="currentSortColumn" label-sort-asc="Ordenar 🡅" label-sort-desc="Ordenar 🡇"
+                sort-icon-left :sort-by="currentSortColumn" label-sort-asc="Ordenar 🡅" label-sort-desc="Ordenar 🡇"
                 label-sort-clear="desordenar" no-sort-reset :sort-compare="sortingChanged"
                 foot-clone striped borderless hover head-variant="light">
                 <template #cell(titulo)="data">
                     <span v-html="data.item.titulo"></span>
                 </template>
                 <template #cell(website)="data">
-                    <b-link :href="data.item.website" target="_blank">ver website</b-link>
+                    <b-link :href="data.item.website" target="_blank">abrir</b-link>
                 </template>
                 <template #cell(regulamento)="data">
-                    <b-link v-if="data.item.regulamento" :href="data.item.regulamento" target="_blank">ver
-                        regulamento</b-link>
+                    <b-link v-if="data.item.regulamento" :href="data.item.regulamento" target="_blank">abrir</b-link>
                 </template>
                 <template #cell(prazo)="data">
                     {{data.item.prazo}}
@@ -96,9 +110,6 @@
     </div>
 
 
-    <!-- Include the BootstrapVue app -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.7/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-vue@2.23.0/dist/bootstrap-vue.js"></script>
     <script src="data.js"></script>
     <script>
         new Vue({
@@ -112,19 +123,16 @@
                     currentSortColumn: "prazo",
                     resultsConter: 0,
                     tableFields: [
-                        { key: 'titulo', label: 'Título', sortable: true, tdClass: 'no-splitting pre-wrap locked-column' },
+                        { key: 'titulo', label: 'Título', sortable: true, thClass: 'sortable-column', tdClass: 'no-splitting pre-wrap locked-column' },
                         { key: 'concorrente', label: 'Concorrente' },
                         { key: 'idade', label: 'Idade', tdClass: 'no-splitting' },
-                        { key: 'obra', label: 'Requisitos da obra' },
-                        { key: 'formato', label: 'Formato' },
-                        { key: 'genero', label: 'Género' },
+                        { key: 'obra', label: 'Obra' },
                         { key: 'tema', label: 'Tema' },
-                        { key: 'multiplas', label: 'Múltiplas participações' },
                         { key: 'dimensao', label: 'Dimensão' },
-                        { key: 'premio', label: 'Prémio', sortable: true },
-                        { key: 'entrega', label: 'Forma de entrega' },
-                        { key: 'prazo', label: 'Prazo', sortable: true, tdClass: 'no-splitting' },
-                        { key: 'tempoRestante', label: 'Faltam', sortable: true, thClass: 'no-splitting', tdClass: 'no-splitting' },
+                        { key: 'premio', label: 'Prémio', sortable: true, thClass: 'sortable-column' },
+                        { key: 'entrega', label: 'Entrega' },
+                        { key: 'prazo', label: 'Prazo', sortable: true, thClass: 'sortable-column', tdClass: 'no-splitting' },
+                        { key: 'tempoRestante', label: 'Faltam', sortable: true, thClass: 'sortable-column no-splitting', tdClass: 'no-splitting' },
                         { key: 'obs', label: 'Obs.' },
                         { key: 'website', label: 'Website' },
                         { key: 'regulamento', label: 'Regulamento' },
@@ -207,19 +215,19 @@
                             return writerAge >= minAge && writerAge <= maxAge;
                         })
 
-                        // format filter
+                        // prosa/poesia filter
                         .filter(usuario => {
                             results = usuarios;
                             if (this.formatFilter != "tudo") {
-                                results = usuario.formato.toLowerCase().includes(this.formatFilter.toLowerCase());
+                                results = usuario.prosa_poesia.toLowerCase().includes(this.formatFilter.toLowerCase());
                             }
                             return results;
                         })
 
-                        // genre filter
+                        // ficcao/nao ficcao filter
                         .filter(usuario => {
                             results = usuarios;
-                            let genres = usuario.genero.toLowerCase().split(',');
+                            let genres = usuario.ficcao_nao.toLowerCase().split(',');
                             genres = genres.map((x) => x.trim());
                             if (this.genreFilter === "ficcao") {
                                 results = (genres.indexOf('ficção') > -1)
