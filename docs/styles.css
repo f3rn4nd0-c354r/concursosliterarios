@@ -11,6 +11,10 @@ body {
 
 /* Filter section */
 
+input.age-form {
+    width: 3em;
+}
+
 #filters {
     border: solid 2px white;
     border-radius: 10px;
