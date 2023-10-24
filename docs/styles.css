@@ -70,12 +70,14 @@ body {
     padding-bottom: 10px;
 }
 
-/* for the title */
 td.no-splitting {
     white-space: nowrap;
     overflow: hidden;
 }
 
+td.center {
+    text-align: center;
+}
 
 .locked-column {
     /* Make text bold */

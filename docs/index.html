@@ -86,10 +86,19 @@
 
             <div id="separator"> </div>
 
-            <b-table id="main-table" :items="filteredUsuarios" :fields="tableFields"
-                sort-icon-left :sort-by="currentSortColumn" label-sort-asc="Ordenar 🡅" label-sort-desc="Ordenar 🡇"
-                label-sort-clear="desordenar" no-sort-reset :sort-compare="sortingChanged"
-                foot-clone striped borderless hover head-variant="light">
+            <b-table
+                    id="main-table"
+                    :items="filteredUsuarios"
+                    :fields="tableFields"
+                    sort-icon-left :sort-by="currentSortColumn"
+                    label-sort-asc="Ordenar 🡅" label-sort-desc="Ordenar 🡇" label-sort-clear="desordenar"
+                    no-sort-reset
+                    :sort-compare="sortingChanged"
+                    foot-clone
+                    striped
+                    borderless
+                    hover
+                    head-variant="light">
                 <template #cell(titulo)="data">
                     <span v-html="data.item.titulo"></span>
                 </template>
@@ -100,10 +109,7 @@
                     <b-link v-if="data.item.regulamento" :href="data.item.regulamento" target="_blank">abrir</b-link>
                 </template>
                 <template #cell(prazo)="data">
-                    {{data.item.prazo}}
-                </template>
-                <template #cell(tempoRestante)="data">
-                    {{data.item.tempoRestante}} dias
+                    {{data.item.tempoRestante}} dia(s)<br>({{data.item.prazo}})
                 </template>
             </b-table>
         </template>
@@ -131,8 +137,7 @@
                         { key: 'dimensao', label: 'Dimensão' },
                         { key: 'premio', label: 'Prémio', sortable: true, thClass: 'sortable-column' },
                         { key: 'entrega', label: 'Entrega' },
-                        { key: 'prazo', label: 'Prazo', sortable: true, thClass: 'sortable-column', tdClass: 'no-splitting' },
-                        { key: 'tempoRestante', label: 'Faltam', sortable: true, thClass: 'sortable-column no-splitting', tdClass: 'no-splitting' },
+                        { key: 'prazo', label: 'Falta(m)', sortable: true, thClass: 'sortable-column', tdClass: 'no-splitting center' },
                         { key: 'obs', label: 'Obs.' },
                         { key: 'website', label: 'Website' },
                         { key: 'regulamento', label: 'Regulamento' },
