@@ -1,5 +1,6 @@
 var usuarios = [
   {
+    "novidade": "False",
     "titulo": "Prémio \nImprensa Nacional/Ferreira de Castro",
     "concorrente": "portugueses e lusodescendentes, ambos residentes no estrangeiro",
     "id_min": "",
@@ -24,6 +25,7 @@ var usuarios = [
     "": ""
   },
   {
+    "novidade": "False",
     "titulo": "Prémio de Literatura Juvenil \nFerreira de Castro",
     "concorrente": "jovens portugueses e jovens oriundos de países de língua oficial portuguesa",
     "id_min": 12,
@@ -48,6 +50,7 @@ var usuarios = [
     "": ""
   },
   {
+    "novidade": "False",
     "titulo": "Prémio de Literatura Juvenil \nFerreira de Castro",
     "concorrente": "jovens portugueses e jovens oriundos de países de língua oficial portuguesa",
     "id_min": 16,
@@ -72,6 +75,7 @@ var usuarios = [
     "": ""
   },
   {
+    "novidade": "False",
     "titulo": "Prémio \nRes Publica",
     "concorrente": "autoria individual ou coletiva",
     "id_min": "",
@@ -96,6 +100,7 @@ var usuarios = [
     "": ""
   },
   {
+    "novidade": "False",
     "titulo": "Prémio Literário \nSantos Stockler",
     "concorrente": "",
     "id_min": "",
@@ -120,6 +125,7 @@ var usuarios = [
     "": ""
   },
   {
+    "novidade": "False",
     "titulo": "Prémio Literário \nMaria da Nóbrega",
     "concorrente": "autores de nacionalidade portuguesa e autores estrangeiros a residir em Portugal",
     "id_min": "",
@@ -144,6 +150,7 @@ var usuarios = [
     "": ""
   },
   {
+    "novidade": "False",
     "titulo": "Prémio Literário do \nMunicípio de Mafra",
     "concorrente": "",
     "id_min": "",
@@ -168,6 +175,7 @@ var usuarios = [
     "": ""
   },
   {
+    "novidade": "False",
     "titulo": "Concurso Literário \nSophia de Mello Breyner Andresen",
     "concorrente": "estudantes do 2º e 3º Ciclos do Ensino Básico e do Ensino Secundário da região do Algarve",
     "id_min": "",
@@ -192,6 +200,7 @@ var usuarios = [
     "": "https://www.culturaportugal.gov.pt/pt/criar/apoios/diversos-2023/concurso-literario-sophia-de-mello-breyner-andresen/"
   },
   {
+    "novidade": "True",
     "titulo": "Prémio\nMariano Calado",
     "concorrente": "",
     "id_min": 18,
@@ -216,6 +225,7 @@ var usuarios = [
     "": ""
   },
   {
+    "novidade": "False",
     "titulo": "Prémio de Investigação \nCamilo Castelo Branco",
     "concorrente": "",
     "id_min": 18,
@@ -240,6 +250,7 @@ var usuarios = [
     "": ""
   },
   {
+    "novidade": "True",
     "titulo": "Prémio Literário \nVergílio Ferreira",
     "concorrente": "",
     "id_min": "",
@@ -264,6 +275,7 @@ var usuarios = [
     "": "https://www.jornalaguarda.com/index.php/regiao/gouveia/abertura-de-candidaturas-ao-premio-vergilio-ferreira-2024"
   },
   {
+    "novidade": "True",
     "titulo": "Prémio Literário \nFialho de Almeida",
     "concorrente": "portugueses e estrangeiros residentes em Portugal",
     "id_min": 18,
@@ -288,6 +300,7 @@ var usuarios = [
     "": "https://www.cm-cuba.pt/index.php?option=com_content&view=article&id=1980:premio-fialho-dalmeida&catid=51:cultura"
   },
   {
+    "novidade": "True",
     "titulo": "Prémio Literário \nJoão da Silva Correia",
     "concorrente": "",
     "id_min": "",
@@ -312,6 +325,7 @@ var usuarios = [
     "": ""
   },
   {
+    "novidade": "True",
     "titulo": "Prémio Nacional de Literatura \nLions de Portugal",
     "concorrente": "",
     "id_min": 18,
@@ -336,6 +350,7 @@ var usuarios = [
     "": "https://www.guerraepaz.pt/premios-lions/?mc_cid=53a7d19250"
   },
   {
+    "novidade": "True",
     "titulo": "Concurso literário \n“As Minhas Férias”",
     "concorrente": "residentes num país cuja língua oficial não seja o português ou que residam noutro país de língua oficial portuguesa que não seja o país de origem de pelo menos um dos progenitores ",
     "id_min": 8,
@@ -357,6 +372,31 @@ var usuarios = [
     "obs": "Prazo adiado, face ao previsto no regulamento. Não se aceitam trabalhos coletivos.",
     "website": "https://asminhasferias.pt/",
     "regulamento": "https://asminhasferias.pt/Regulamento-2023.pdf",
+    "": ""
+  },
+  {
+    "novidade": "True",
+    "titulo": "Concurso Literário de Prosa e Poesia",
+    "concorrente": "residentes em território nacional",
+    "id_min": 18,
+    "id_max": "",
+    "idade": "18+",
+    "obra": "contos, crónicas, poesias, entre outros",
+    "inedita_publicada": "inédita",
+    "prosa_poesia": "poesia, prosa",
+    "ficcao_nao": "ficção, não ficção",
+    "tema": "",
+    "multiplas-participacoes": "1 poesia, 1 prosa",
+    "dim_min": "",
+    "dim_max": "",
+    "dimensao": "prosa: até 4 páginas; poesia: até 2 páginas",
+    "1premio": "",
+    "premio": "1º prémio - Cabaz surpresa grande;\n2º prémio - Cabaz surpresa pequeno; (artigos do comércio local da baixa de Coimbra)",
+    "entrega": "online",
+    "prazo": "2023-10-26T23:00:00.000Z",
+    "obs": "Submissão de trabalhos até às 17h00 do dia 27. Serão considerados critérios como originalidade, criatividade, estrutura e qualidade da escrita.",
+    "website": "https://caritascoimbra.pt/2023/noticias/abertas-as-inscricoes-para-o-3o-concurso-literario-de-prosa-e-poesia-da-biblioteca-comunitaria-da-caritas-coimbra/",
+    "regulamento": "https://caritascoimbra.pt/wp-content/uploads/2023/09/Regulamento-Concurso-Prosa-e-Poesia.pdf",
     "": ""
   }
 ];
